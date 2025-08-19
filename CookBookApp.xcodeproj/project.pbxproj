@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3741E8DF2E42A83F00167FC6 /* cookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3741E8EF2E42A84700167FC6 /* cookbookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cookbookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3741E8F92E42A84700167FC6 /* cookbookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cookbookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3741E8DF2E42A83F00167FC6 /* CookBookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookBookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3741E8EF2E42A84700167FC6 /* CookBookAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookBookAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3741E8F92E42A84700167FC6 /* CookBookAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookBookAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,9 +85,9 @@
 		3741E8E02E42A83F00167FC6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3741E8DF2E42A83F00167FC6 /* cookbook.app */,
-				3741E8EF2E42A84700167FC6 /* cookbookTests.xctest */,
-				3741E8F92E42A84700167FC6 /* cookbookUITests.xctest */,
+				3741E8DF2E42A83F00167FC6 /* CookBookApp.app */,
+				3741E8EF2E42A84700167FC6 /* CookBookAppTests.xctest */,
+				3741E8F92E42A84700167FC6 /* CookBookAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3741E8DE2E42A83F00167FC6 /* cookbook */ = {
+		3741E8DE2E42A83F00167FC6 /* CookBookApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3741E9032E42A84700167FC6 /* Build configuration list for PBXNativeTarget "cookbook" */;
+			buildConfigurationList = 3741E9032E42A84700167FC6 /* Build configuration list for PBXNativeTarget "CookBookApp" */;
 			buildPhases = (
 				3741E8DB2E42A83F00167FC6 /* Sources */,
 				3741E8DC2E42A83F00167FC6 /* Frameworks */,
@@ -110,16 +110,16 @@
 			fileSystemSynchronizedGroups = (
 				3741E8E12E42A83F00167FC6 /* cookbook */,
 			);
-			name = cookbook;
+			name = CookBookApp;
 			packageProductDependencies = (
 			);
 			productName = cookbook;
-			productReference = 3741E8DF2E42A83F00167FC6 /* cookbook.app */;
+			productReference = 3741E8DF2E42A83F00167FC6 /* CookBookApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3741E8EE2E42A84700167FC6 /* cookbookTests */ = {
+		3741E8EE2E42A84700167FC6 /* CookBookAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3741E9062E42A84700167FC6 /* Build configuration list for PBXNativeTarget "cookbookTests" */;
+			buildConfigurationList = 3741E9062E42A84700167FC6 /* Build configuration list for PBXNativeTarget "CookBookAppTests" */;
 			buildPhases = (
 				3741E8EB2E42A84700167FC6 /* Sources */,
 				3741E8EC2E42A84700167FC6 /* Frameworks */,
@@ -133,16 +133,16 @@
 			fileSystemSynchronizedGroups = (
 				3741E8F22E42A84700167FC6 /* cookbookTests */,
 			);
-			name = cookbookTests;
+			name = CookBookAppTests;
 			packageProductDependencies = (
 			);
 			productName = cookbookTests;
-			productReference = 3741E8EF2E42A84700167FC6 /* cookbookTests.xctest */;
+			productReference = 3741E8EF2E42A84700167FC6 /* CookBookAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3741E8F82E42A84700167FC6 /* cookbookUITests */ = {
+		3741E8F82E42A84700167FC6 /* CookBookAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3741E9092E42A84700167FC6 /* Build configuration list for PBXNativeTarget "cookbookUITests" */;
+			buildConfigurationList = 3741E9092E42A84700167FC6 /* Build configuration list for PBXNativeTarget "CookBookAppUITests" */;
 			buildPhases = (
 				3741E8F52E42A84700167FC6 /* Sources */,
 				3741E8F62E42A84700167FC6 /* Frameworks */,
@@ -156,11 +156,11 @@
 			fileSystemSynchronizedGroups = (
 				3741E8FC2E42A84700167FC6 /* cookbookUITests */,
 			);
-			name = cookbookUITests;
+			name = CookBookAppUITests;
 			packageProductDependencies = (
 			);
 			productName = cookbookUITests;
-			productReference = 3741E8F92E42A84700167FC6 /* cookbookUITests.xctest */;
+			productReference = 3741E8F92E42A84700167FC6 /* CookBookAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3741E8DA2E42A83F00167FC6 /* Build configuration list for PBXProject "cookbook" */;
+			buildConfigurationList = 3741E8DA2E42A83F00167FC6 /* Build configuration list for PBXProject "CookBookApp" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3741E8DE2E42A83F00167FC6 /* cookbook */,
-				3741E8EE2E42A84700167FC6 /* cookbookTests */,
-				3741E8F82E42A84700167FC6 /* cookbookUITests */,
+				3741E8DE2E42A83F00167FC6 /* CookBookApp */,
+				3741E8EE2E42A84700167FC6 /* CookBookAppTests */,
+				3741E8F82E42A84700167FC6 /* CookBookAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		3741E8F12E42A84700167FC6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3741E8DE2E42A83F00167FC6 /* cookbook */;
+			target = 3741E8DE2E42A83F00167FC6 /* CookBookApp */;
 			targetProxy = 3741E8F02E42A84700167FC6 /* PBXContainerItemProxy */;
 		};
 		3741E8FB2E42A84700167FC6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3741E8DE2E42A83F00167FC6 /* cookbook */;
+			target = 3741E8DE2E42A83F00167FC6 /* CookBookApp */;
 			targetProxy = 3741E8FA2E42A84700167FC6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -408,7 +408,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.taeonis.cookbook;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.taeonis.CookbookApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -436,7 +436,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.taeonis.cookbook;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.taeonis.CookbookApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -458,7 +458,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cookbook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cookbook";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CookBookApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CookBookApp";
 			};
 			name = Debug;
 		};
@@ -476,7 +476,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cookbook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cookbook";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CookBookApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CookBookApp";
 			};
 			name = Release;
 		};
@@ -515,7 +515,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3741E8DA2E42A83F00167FC6 /* Build configuration list for PBXProject "cookbook" */ = {
+		3741E8DA2E42A83F00167FC6 /* Build configuration list for PBXProject "CookBookApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3741E9012E42A84700167FC6 /* Debug */,
@@ -524,7 +524,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3741E9032E42A84700167FC6 /* Build configuration list for PBXNativeTarget "cookbook" */ = {
+		3741E9032E42A84700167FC6 /* Build configuration list for PBXNativeTarget "CookBookApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3741E9042E42A84700167FC6 /* Debug */,
@@ -533,7 +533,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3741E9062E42A84700167FC6 /* Build configuration list for PBXNativeTarget "cookbookTests" */ = {
+		3741E9062E42A84700167FC6 /* Build configuration list for PBXNativeTarget "CookBookAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3741E9072E42A84700167FC6 /* Debug */,
@@ -542,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3741E9092E42A84700167FC6 /* Build configuration list for PBXNativeTarget "cookbookUITests" */ = {
+		3741E9092E42A84700167FC6 /* Build configuration list for PBXNativeTarget "CookBookAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3741E90A2E42A84700167FC6 /* Debug */,

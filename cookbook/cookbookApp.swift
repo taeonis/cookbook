@@ -8,10 +8,18 @@
 import SwiftUI
 
 @main
-struct cookbookApp: App {
+struct CookBookApp: App {
+    @StateObject private var recipeData = RecipeData()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                RecipeList()
+                Text("Select a Recipe")
+                    .foregroundStyle(.secondary)
+            }
+            .environmentObject(recipeData)
+
         }
     }
 }
