@@ -34,6 +34,7 @@ struct RecipeList: View {
             }
         )
     }
+
     
     var body: some View {
         List {
@@ -80,10 +81,18 @@ struct RecipeList: View {
     }
 }
 
-struct RecipeList_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            RecipeList().environmentObject(RecipeData())
-        }
+#Preview {
+    NavigationStack {
+        RecipeList()
+            .environmentObject(RecipeData())
     }
 }
+//struct RecipeList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            RecipeList()
+//                .environmentObject(RecipeData())
+//        }
+//    }
+//}
+

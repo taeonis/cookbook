@@ -9,9 +9,9 @@ import Foundation
 
 struct Ingredient: Identifiable, Hashable {
     var id = UUID()
+    var isChecked: Bool = false
     var name: String = ""
     var quantity: Float = 0
     var unit : String = ""
-    
 }
 

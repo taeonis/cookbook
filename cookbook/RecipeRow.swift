@@ -15,7 +15,7 @@ struct RecipeRow: View {
             Image(systemName: "pin.fill")
                 .sfSymbolStyling()
                 .foregroundStyle(.orange)
-                .opacity(recipe.isFavorite ? 1 : 0)
+                .opacity(recipe.isPinned ? 1 : 0)
             
             VStack(alignment: .leading, spacing: 5) {
                 Text(recipe.name)
@@ -34,15 +34,8 @@ struct RecipeRow: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
                         ForEach(recipe.tags, id: \.self) { tag in
-                            Text(tag)
+                            TagChip(tag: tag, isSelected: false, onDelete: {})
                                 .font(.caption2)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 4)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(Color.gray.opacity(0.2))
-                                )
-                                .foregroundColor(.primary)
                         }
                     }
                 }
@@ -55,4 +48,5 @@ struct RecipeRow: View {
 
 #Preview {
     RecipeRow(recipe: Recipe.example)
+        .environmentObject(RecipeData())
 }

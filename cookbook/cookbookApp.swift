@@ -23,3 +23,20 @@ struct CookBookApp: App {
         }
     }
 }
+
+struct RootView: View {
+    var body: some View {
+        NavigationView {
+            RecipeList()
+            Text("Select a Recipe")
+                .foregroundStyle(.secondary)
+        }
+    }
+}
+
+#Preview {
+    RootView()
+        .environmentObject(RecipeData())
+}
+
+
