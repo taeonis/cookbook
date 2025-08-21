@@ -7,45 +7,19 @@
 
 import SwiftUI
 
-struct TagDropDelegate: DropDelegate {
-    let currentTag: String
-    @Binding var tags: [String]
-
-    func performDrop(info: DropInfo) -> Bool {
-        print("Drop performed!")
-        return true
-    }
-
-    func dropEntered(info: DropInfo) {
-        print("Drop entered!")
-        guard let from = info.itemProviders(for: [.text]).first else { return }
-        from.loadItem(forTypeIdentifier: "public.text", options: nil) { (data, _) in
-            if let data = data as? Data,
-               let draggedTag = String(data: data, encoding: .utf8),
-               let fromIndex = tags.firstIndex(of: draggedTag),
-               let toIndex = tags.firstIndex(of: currentTag),
-               fromIndex != toIndex {
-                DispatchQueue.main.async {
-                    withAnimation {
-                        tags.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex)
-                    }
-                }
-            }
-        }
-    }
-}
-
 struct TagEditor: View {
     @Binding var tags: [String]
 
     @State var tagRows: [[String]] = []
     @State var selectedTag: String = ""
     
-    @State var lastRowWidth: CGFloat = 0
+    @State private var dropTarget: String? = nil
     
     @State private var addingNewTag: Bool = false
     @State private var newTag: String = ""
     @FocusState private var newTagFieldFocused: Bool
+    
+    @State private var draggedTag: String?
     
     @Environment(\.dismiss) private var dismiss
     
@@ -62,29 +36,7 @@ struct TagEditor: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .center, spacing: 10) {
-                    ForEach(tagRows, id: \.self) { row in
-                        HStack(spacing: 8) {
-                            ForEach(row, id:\.self) { tag in
-                                TagChip(
-                                    tag: tag,
-                                    isSelected: selectedTag == tag,
-                                    onDelete: { deleteTag(for: tag, width: geometry.size.width) }
-                                )
-                                .onTapGesture {
-                                    selectTag(for: tag)
-                                }
-                                .onDrag {
-                                        print("Dragging \(tag)")
-                                        return NSItemProvider(object: tag as NSString)
-                                    }
-                                .onDrop(of: [.text], delegate: TagDropDelegate(
-                                    currentTag: tag,
-                                    tags: $tags
-                                ))
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
+                    tagGrid(width: geometry.size.width)
                     
                     if !addingNewTag {
                         Button(action: {
@@ -133,6 +85,53 @@ struct TagEditor: View {
                     calculateRows(for: geometry.size.width)
                 }
             }
+            .onChange(of: tags) {
+                calculateRows(for: geometry.size.width)
+            }
+        }
+    }
+    
+    private func tagGrid(width: CGFloat) -> some View {
+        ForEach(tagRows, id: \.self) { row in
+            HStack(spacing: 8) {
+                ForEach(row, id:\.self) { tag in
+                    if dropTarget == tag {
+                        Rectangle()
+                            .fill(Color.accentColor)
+                            .frame(width: 2, height: 20)
+                            .padding(.trailing, 2)
+                            .transition(.opacity)
+                    }
+                    
+                    TagChip(
+                        tag: tag,
+                        isSelected: selectedTag == tag,
+                        onDelete: { deleteTag(for: tag, width: width) }
+                    )
+                    .onTapGesture {
+                        selectTag(for: tag)
+                    }
+                    .draggable(tag)
+                    .dropDestination(for: String.self) { items, _ in
+                        guard let fromTag = items.first,
+                              let fromIndex = tags.firstIndex(of: fromTag),
+                              let toIndex   = tags.firstIndex(of: tag),
+                              fromIndex != toIndex else { return false }
+                        
+                        withAnimation {
+                            let item = tags.remove(at: fromIndex)
+                            let dest = (fromIndex < toIndex) ? max(0, toIndex - 1) : toIndex
+                            tags.insert(item, at: dest)
+                        }
+                        return true
+                    } isTargeted: { isHovering in
+                        withAnimation {
+                            dropTarget = isHovering ? tag : nil
+                        }
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity)
         }
     }
     
@@ -201,19 +200,6 @@ extension String {
     }
 }
 
-struct StatefulPreviewWrapper<Value, Content: View>: View {
-    @State private var value: Value
-    private let content: (Binding<Value>) -> Content
-
-    init(_ initialValue: Value, @ViewBuilder content: @escaping (Binding<Value>) -> Content) {
-        _value = State(initialValue: initialValue)
-        self.content = content
-    }
-
-    var body: some View {
-        content($value)
-    }
-}
 
 #Preview {
     StatefulPreviewWrapper([

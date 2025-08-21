@@ -17,7 +17,7 @@ class RecipeData: ObservableObject {
                    .init(name: "Spaghetti", quantity: 1.0, unit: "pound"),
                    .init(name: "Guanciale or pancetta", quantity: 2.0, unit: "ounces"),
                ],
-               directions: ["prep", "cook"],
+               instructions: [.init(text: "prep"), .init(text: "cook")],
                isPinned: false),
         Recipe(name: "Good Old-Fashioned Pancakes",
                tags: ["Pancakes", "Breakfast", "Yummy", "Breakfast-food", "Simple", "Quick", "Family"],
@@ -32,11 +32,11 @@ class RecipeData: ObservableObject {
                    .init(isChecked: false, name: "butter", quantity: 3, unit: "tablespoons"),
                    .init(isChecked: false, name: "large eggs", quantity: 1, unit: "self"),
                ],
-               directions: ["Gather all ingredients. ",
-                            "Sift flour, baking powder, sugar, and salt together in a large bowl. Make a well in the center and add milk, melted butter, and egg; mix until smooth. ",
-                            "Heat a lightly oiled griddle or pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake; cook until bubbles form and the edges are dry, about 2 to 3 minutes.",
-                            "Flip and cook until browned on the other side. Repeat with remaining batter. ",
-                            "Serve and enjoy! "
+               instructions: [.init(text: "Gather all ingredients. "),
+                              .init(text: "Sift flour, baking powder, sugar, and salt together in a large bowl. Make a well in the center and add milk, melted butter, and egg; mix until smooth. "),
+                              .init(text: "Heat a lightly oiled griddle or pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake; cook until bubbles form and the edges are dry, about 2 to 3 minutes."),
+                              .init(text: "Flip and cook until browned on the other side. Repeat with remaining batter. "),
+                              .init(text: "Serve and enjoy! ")
                            ],
                isPinned: true),
         Recipe(name: "Chicken Tikka Masala",
@@ -47,7 +47,7 @@ class RecipeData: ObservableObject {
                     .init(name: "Boneless, skinless chicken breasts", quantity: 1.5, unit: "pounds"),
                     .init(name: "Yogurt", quantity: 1.0, unit: "cup"),
                 ],
-                directions: ["prep", "cook"],
+               instructions: [.init(text: "prep"), .init(text: "cook")],
                 isPinned: false),
     ]
     
