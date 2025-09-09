@@ -31,8 +31,10 @@ struct TagEditor: View {
             } label: {
                 Text("Done")
             }
-            .padding()
+            .font(.headline)
         }
+        .padding()
+        
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .center, spacing: 10) {
@@ -47,23 +49,13 @@ struct TagEditor: View {
                             Image(systemName: "plus.circle")
                                 .foregroundColor(.green)
                         }
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(.gray.opacity(0.2))
-                        )
+                        .tagBackgroundShape()
                         .transition(.scale.combined(with: .opacity))
                     } else {
                         TextField("...", text: $newTag, onCommit: { commitTag(width: geometry.size.width) })
                             .focused($newTagFieldFocused)
                             .fixedSize()
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 4)
-                            .background(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(.gray.opacity(0.2))
-                            )
+                            .tagBackgroundShape()
                             .onAppear {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                     newTagFieldFocused = true

@@ -39,6 +39,21 @@ struct TagChip: View {
     }
 }
 
+struct TagScrollView: View {
+    let tags: [String]
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                ForEach(tags, id: \.self) { tag in
+                    TagChip(tag: tag, isSelected: false, onDelete: {})
+                        .font(.caption2)
+                }
+            }
+        }
+    }
+}
+
 #Preview {
     TagChip(
         tag: "tag",

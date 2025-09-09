@@ -18,6 +18,8 @@ struct RecipeEditor: View {
     @State private var recipeCopy = Recipe()
     @State private var isEditing = false
     
+    @State private var isAdding = false
+    
     private var isRecipeDeleted: Bool {
         !recipeData.exists(recipe) && !isNew
     }
@@ -28,21 +30,22 @@ struct RecipeEditor: View {
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         if isNew {
-                            Button("Cancel") {
+                            Button("Cancel", role: .cancel) {
                                 dismiss()
                             }
+                            .opacity(0.8)
                         }
                     }
                     ToolbarItem {
                         Button {
+                            recipeCopy.instructions = recipeCopy.instructions.filter { !$0.text.isEmpty }
                             if isNew {
                                 recipeData.recipes.append(recipeCopy)
                                 dismiss()
                             } else {
                                 if isEditing && !isDeleted {
-                                    print("Done, saving any changes to \(recipe.name).")
                                     withAnimation {
-                                        recipe = recipeCopy // Put edits (if any) back in the store.
+                                        recipe = recipeCopy
                                     }
                                 }
                                 isEditing.toggle()
@@ -50,10 +53,11 @@ struct RecipeEditor: View {
                         } label: {
                             Text(isNew ? "Add" : (isEditing ? "Done" : "Edit"))
                         }
+                        .disabled(recipeCopy.name.isEmpty)
                     }
                 }
                 .onAppear {
-                    recipeCopy = recipe // Grab a copy in case we decide to make edits.
+                    recipeCopy = recipe
                 }
                 .disabled(isRecipeDeleted)
         }

@@ -7,18 +7,21 @@
 
 import SwiftUI
 
-struct Ingredient: Identifiable, Hashable {
-    var id = UUID()
-    var isChecked: Bool = false
-    var name: String = ""
-    var quantity: Float = 0
-    var unit : String = ""
-}
-
-struct Instruction: Identifiable, Hashable {
+struct Instruction: Identifiable, Hashable, Codable {
     var id = UUID()
     var text: String = ""
 }
+
+func getTotalTime(for recipe: Recipe) -> String {
+    if recipe.totalTime < 60 {
+        return String("\(recipe.totalTime)m")
+    }
+    if recipe.totalTime % 60 == 0 {
+        return String("\(recipe.totalTime / 60)h")
+    }
+    return String("\(recipe.totalTime / 60)h \(recipe.totalTime % 60)m")
+}
+
 
 struct Recipe: Identifiable, Hashable {
     var id = UUID()
@@ -32,18 +35,21 @@ struct Recipe: Identifiable, Hashable {
     var isPinned = false
     
     static var example = Recipe(
+        source: "https://www.allrecipes.com/recipe/21014/good-old-fashioned-pancakes/",
         name: "Good Old-Fashioned Pancakes",
         tags: ["Pancakes", "Breakfast"],
         totalTime: 15,
         servings: 8,
         ingredients: [
-            .init(isChecked: false, name: "flour", quantity: 1.5, unit: "cups"),
-            .init(isChecked: false, name: "baking powder", quantity: 3.5, unit: "teaspoons"),
-            .init(isChecked: false, name: "white sugar", quantity: 1, unit: "tablespoon"),
-            .init(isChecked: false, name: "salt", quantity: 0.25, unit: "teaspoon"),
-            .init(isChecked: false, name: "milk", quantity: 1.25, unit: "cups"),
-            .init(isChecked: false, name: "butter", quantity: 3, unit: "tablespoons"),
-            .init(isChecked: false, name: "large eggs", quantity: 1, unit: "self"),
+         .init(isChecked: false, name: "range test", quantityIsRange: true, quantityRange: [1, 3], unit: .lb),
+         .init(isChecked: false, name: "custom unit test", quantityRange: [40, 40], unit: .custom, customUnit: "myCustomUnit"),
+         .init(isChecked: false, name: "flour", quantityRange: [1.5, 1.5], unit: .cup),
+         .init(isChecked: false, name: "baking powder", quantityRange: [3.5, 3.5], unit: .tsp),
+         .init(isChecked: false, name: "white sugar", quantityRange: [1, 1], unit: .tbsp),
+         .init(isChecked: false, name: "salt", quantityRange: [0.25, 0.25], unit: .tsp),
+         .init(isChecked: false, name: "milk", quantityRange: [1.25, 1.25], unit: .cup),
+         .init(isChecked: false, name: "butter", quantityRange: [3, 3], unit: .tbsp),
+         .init(isChecked: false, name: "large eggs", quantityRange: [1, 1], unit: .n_a),
         ],
         instructions: [.init(text: "Gather all ingredients. "),
                        .init(text: "Sift flour, baking powder, sugar, and salt together in a large bowl. Make a well in the center and add milk, melted butter, and egg; mix until smooth. "),

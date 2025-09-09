@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		856216CED20D4B50502F93F9 /* Pods_CookBookApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43099E2C4C22C198C16FEE86 /* Pods_CookBookApp.framework */; };
+		87D6EC6D7B9134A107E5E9D1 /* Pods_CookBookApp_CookBookAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D927EAC270E42F8B1AECD7B /* Pods_CookBookApp_CookBookAppUITests.framework */; };
+		F2EAD7E94257E091EA697B0E /* Pods_CookBookAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C77A9AF79542EE6CE97FAA5 /* Pods_CookBookAppTests.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3741E8F02E42A84700167FC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,9 +30,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		204F559947B3421DDB711077 /* Pods-CookBookAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookBookAppTests.release.xcconfig"; path = "Target Support Files/Pods-CookBookAppTests/Pods-CookBookAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		3741E8DF2E42A83F00167FC6 /* CookBookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookBookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3741E8EF2E42A84700167FC6 /* CookBookAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookBookAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3741E8F92E42A84700167FC6 /* CookBookAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CookBookAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		43099E2C4C22C198C16FEE86 /* Pods_CookBookApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookBookApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		794829EE39B3B7F6F98D0A68 /* Pods-CookBookApp-CookBookAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookBookApp-CookBookAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-CookBookApp-CookBookAppUITests/Pods-CookBookApp-CookBookAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8D927EAC270E42F8B1AECD7B /* Pods_CookBookApp_CookBookAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookBookApp_CookBookAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C6B4D8E18E48F5098461BA4 /* Pods-CookBookApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookBookApp.release.xcconfig"; path = "Target Support Files/Pods-CookBookApp/Pods-CookBookApp.release.xcconfig"; sourceTree = "<group>"; };
+		9C77A9AF79542EE6CE97FAA5 /* Pods_CookBookAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookBookAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5816DEC5C8424B80BE8931B /* Pods-CookBookApp-CookBookAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookBookApp-CookBookAppUITests.release.xcconfig"; path = "Target Support Files/Pods-CookBookApp-CookBookAppUITests/Pods-CookBookApp-CookBookAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C92A43AE978A272954C6EE4A /* Pods-CookBookAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookBookAppTests.debug.xcconfig"; path = "Target Support Files/Pods-CookBookAppTests/Pods-CookBookAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FDE6B1AD8C5754FBC3D69A5C /* Pods-CookBookApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookBookApp.debug.xcconfig"; path = "Target Support Files/Pods-CookBookApp/Pods-CookBookApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				856216CED20D4B50502F93F9 /* Pods_CookBookApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2EAD7E94257E091EA697B0E /* Pods_CookBookAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +83,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87D6EC6D7B9134A107E5E9D1 /* Pods_CookBookApp_CookBookAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13224413A75163E5481009A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FDE6B1AD8C5754FBC3D69A5C /* Pods-CookBookApp.debug.xcconfig */,
+				9C6B4D8E18E48F5098461BA4 /* Pods-CookBookApp.release.xcconfig */,
+				794829EE39B3B7F6F98D0A68 /* Pods-CookBookApp-CookBookAppUITests.debug.xcconfig */,
+				A5816DEC5C8424B80BE8931B /* Pods-CookBookApp-CookBookAppUITests.release.xcconfig */,
+				C92A43AE978A272954C6EE4A /* Pods-CookBookAppTests.debug.xcconfig */,
+				204F559947B3421DDB711077 /* Pods-CookBookAppTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		342A82BC5BF65E8DAFC23EF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				43099E2C4C22C198C16FEE86 /* Pods_CookBookApp.framework */,
+				8D927EAC270E42F8B1AECD7B /* Pods_CookBookApp_CookBookAppUITests.framework */,
+				9C77A9AF79542EE6CE97FAA5 /* Pods_CookBookAppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3741E8D62E42A83F00167FC6 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +120,8 @@
 				3741E8F22E42A84700167FC6 /* cookbookTests */,
 				3741E8FC2E42A84700167FC6 /* cookbookUITests */,
 				3741E8E02E42A83F00167FC6 /* Products */,
+				13224413A75163E5481009A2 /* Pods */,
+				342A82BC5BF65E8DAFC23EF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,9 +142,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3741E9032E42A84700167FC6 /* Build configuration list for PBXNativeTarget "CookBookApp" */;
 			buildPhases = (
+				AF545198AD31824ED4EC376A /* [CP] Check Pods Manifest.lock */,
 				3741E8DB2E42A83F00167FC6 /* Sources */,
 				3741E8DC2E42A83F00167FC6 /* Frameworks */,
 				3741E8DD2E42A83F00167FC6 /* Resources */,
+				E90D9E5D73383F93585F611C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -111,8 +156,6 @@
 				3741E8E12E42A83F00167FC6 /* cookbook */,
 			);
 			name = CookBookApp;
-			packageProductDependencies = (
-			);
 			productName = cookbook;
 			productReference = 3741E8DF2E42A83F00167FC6 /* CookBookApp.app */;
 			productType = "com.apple.product-type.application";
@@ -121,6 +164,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3741E9062E42A84700167FC6 /* Build configuration list for PBXNativeTarget "CookBookAppTests" */;
 			buildPhases = (
+				0B2E19EAD0B9233B11750F9C /* [CP] Check Pods Manifest.lock */,
 				3741E8EB2E42A84700167FC6 /* Sources */,
 				3741E8EC2E42A84700167FC6 /* Frameworks */,
 				3741E8ED2E42A84700167FC6 /* Resources */,
@@ -134,8 +178,6 @@
 				3741E8F22E42A84700167FC6 /* cookbookTests */,
 			);
 			name = CookBookAppTests;
-			packageProductDependencies = (
-			);
 			productName = cookbookTests;
 			productReference = 3741E8EF2E42A84700167FC6 /* CookBookAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -144,9 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3741E9092E42A84700167FC6 /* Build configuration list for PBXNativeTarget "CookBookAppUITests" */;
 			buildPhases = (
+				58AC51DE48869CDA9CD77218 /* [CP] Check Pods Manifest.lock */,
 				3741E8F52E42A84700167FC6 /* Sources */,
 				3741E8F62E42A84700167FC6 /* Frameworks */,
 				3741E8F72E42A84700167FC6 /* Resources */,
+				68C582C5B1B958C6B12BAFBC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,8 +201,6 @@
 				3741E8FC2E42A84700167FC6 /* cookbookUITests */,
 			);
 			name = CookBookAppUITests;
-			packageProductDependencies = (
-			);
 			productName = cookbookUITests;
 			productReference = 3741E8F92E42A84700167FC6 /* CookBookAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -230,6 +272,117 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B2E19EAD0B9233B11750F9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CookBookAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58AC51DE48869CDA9CD77218 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CookBookApp-CookBookAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68C582C5B1B958C6B12BAFBC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CookBookApp-CookBookAppUITests/Pods-CookBookApp-CookBookAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CookBookApp-CookBookAppUITests/Pods-CookBookApp-CookBookAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CookBookApp-CookBookAppUITests/Pods-CookBookApp-CookBookAppUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF545198AD31824ED4EC376A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CookBookApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E90D9E5D73383F93585F611C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CookBookApp/Pods-CookBookApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CookBookApp/Pods-CookBookApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CookBookApp/Pods-CookBookApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3741E8DB2E42A83F00167FC6 /* Sources */ = {
@@ -390,13 +543,16 @@
 		};
 		3741E9042E42A84700167FC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDE6B1AD8C5754FBC3D69A5C /* Pods-CookBookApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"cookbook/Preview Content\"";
+				DEVELOPMENT_TEAM = 55N8VNQJ48;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -418,13 +574,16 @@
 		};
 		3741E9052E42A84700167FC6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C6B4D8E18E48F5098461BA4 /* Pods-CookBookApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"cookbook/Preview Content\"";
+				DEVELOPMENT_TEAM = 55N8VNQJ48;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -446,6 +605,7 @@
 		};
 		3741E9072E42A84700167FC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C92A43AE978A272954C6EE4A /* Pods-CookBookAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -464,6 +624,7 @@
 		};
 		3741E9082E42A84700167FC6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 204F559947B3421DDB711077 /* Pods-CookBookAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -482,6 +643,7 @@
 		};
 		3741E90A2E42A84700167FC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 794829EE39B3B7F6F98D0A68 /* Pods-CookBookApp-CookBookAppUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -498,6 +660,7 @@
 		};
 		3741E90B2E42A84700167FC6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5816DEC5C8424B80BE8931B /* Pods-CookBookApp-CookBookAppUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

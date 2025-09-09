@@ -21,24 +21,15 @@ struct RecipeRow: View {
                 Text(recipe.name)
                     .fontWeight(.bold)
                 
-                HStack(spacing: 4) {
+                HStack {
                     Image(systemName: "clock")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    
-                    Text("\(recipe.totalTime) min")
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
+                    Text(getTotalTime(for: recipe))
                 }
-
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 8) {
-                        ForEach(recipe.tags, id: \.self) { tag in
-                            TagChip(tag: tag, isSelected: false, onDelete: {})
-                                .font(.caption2)
-                        }
-                    }
-                }
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.bottom, 5)
+                
+                TagScrollView(tags: recipe.tags)
             }
         }
     }
