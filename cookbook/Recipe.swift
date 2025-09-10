@@ -12,6 +12,7 @@ struct Instruction: Identifiable, Hashable, Codable {
     var text: String = ""
 }
 
+
 func getTotalTime(for recipe: Recipe) -> String {
     if recipe.totalTime < 60 {
         return String("\(recipe.totalTime)m")
@@ -23,13 +24,13 @@ func getTotalTime(for recipe: Recipe) -> String {
 }
 
 
-struct Recipe: Identifiable, Hashable {
+struct Recipe: Identifiable, Hashable, Equatable {
     var id = UUID()
-    var source = ""
-    var name = ""
+    var source: String?
+    var name: String = ""
     var tags: [String] = []
     var totalTime = 0
-    var servings = 0
+    var notes: String = ""
     var ingredients: [Ingredient] = []
     var instructions: [Instruction] = []
     var isPinned = false
@@ -39,24 +40,23 @@ struct Recipe: Identifiable, Hashable {
         name: "Good Old-Fashioned Pancakes",
         tags: ["Pancakes", "Breakfast"],
         totalTime: 15,
-        servings: 8,
+        notes: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         ingredients: [
-         .init(isChecked: false, name: "range test", quantityIsRange: true, quantityRange: [1, 3], unit: .lb),
-         .init(isChecked: false, name: "custom unit test", quantityRange: [40, 40], unit: .custom, customUnit: "myCustomUnit"),
-         .init(isChecked: false, name: "flour", quantityRange: [1.5, 1.5], unit: .cup),
-         .init(isChecked: false, name: "baking powder", quantityRange: [3.5, 3.5], unit: .tsp),
-         .init(isChecked: false, name: "white sugar", quantityRange: [1, 1], unit: .tbsp),
-         .init(isChecked: false, name: "salt", quantityRange: [0.25, 0.25], unit: .tsp),
-         .init(isChecked: false, name: "milk", quantityRange: [1.25, 1.25], unit: .cup),
-         .init(isChecked: false, name: "butter", quantityRange: [3, 3], unit: .tbsp),
-         .init(isChecked: false, name: "large eggs", quantityRange: [1, 1], unit: .n_a),
+            .init(text: "1.5 cups all-purpose flour"),
+            .init(text: "3.5 teaspoons baking powder"),
+            .init(text: "1 tablespoon white sugar"),
+            .init(text: "0.25 teaspoon salt, or more to taste"),
+            .init(text: "1.25 cups milk"),
+            .init(text: "3 tablespoons butter, melted"),
+            .init(text: "1 egg")
+         ],
+        instructions: [
+            .init(text: "Gather all ingredients. "),
+            .init(text: "Sift flour, baking powder, sugar, and salt together in a large bowl. Make a well in the center and add milk, melted butter, and egg; mix until smooth. "),
+            .init(text: "Heat a lightly oiled griddle or pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake; cook until bubbles form and the edges are dry, about 2 to 3 minutes."),
+            .init(text: "Flip and cook until browned on the other side. Repeat with remaining batter. "),
+            .init(text: "Serve and enjoy! ")
         ],
-        instructions: [.init(text: "Gather all ingredients. "),
-                       .init(text: "Sift flour, baking powder, sugar, and salt together in a large bowl. Make a well in the center and add milk, melted butter, and egg; mix until smooth. "),
-                       .init(text: "Heat a lightly oiled griddle or pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake; cook until bubbles form and the edges are dry, about 2 to 3 minutes."),
-                       .init(text: "Flip and cook until browned on the other side. Repeat with remaining batter. "),
-                       .init(text: "Serve and enjoy! ")
-                    ],
         isPinned: true
     )
 }

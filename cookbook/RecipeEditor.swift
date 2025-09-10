@@ -48,7 +48,9 @@ struct RecipeEditor: View {
                                         recipe = recipeCopy
                                     }
                                 }
-                                isEditing.toggle()
+                                withAnimation {
+                                    isEditing.toggle()
+                                }
                             }
                         } label: {
                             Text(isNew ? "Add" : (isEditing ? "Done" : "Edit"))

@@ -6,96 +6,45 @@
 //
 
 import SwiftUI
+import Foundation
 
-enum Unit: String, CaseIterable, Identifiable, Codable, Hashable {
-    case tsp
-    case tbsp
-    case cup
-    case oz
-    case g
-    case ml
-    case fl_oz
-    case lb
-    case custom
-    case n_a
-    
-    var id: String { rawValue }
-    
-    var displayName: String {
-        switch self {
-        case .tsp: "tsp"
-        case .tbsp: "tbsp"
-        case .cup: "cup"
-        case .oz: "oz"
-        case .g: "g"
-        case .ml: "ml"
-        case .fl_oz: "fl oz"
-        case .lb: "lb"
-        case .custom: "(custom)"
-        case .n_a: "N/A"
-        }
-    }
-}
-
-struct Ingredient: Identifiable, Hashable {
+struct Ingredient: Identifiable, Hashable, Equatable {
     var id = UUID()
     var isChecked: Bool = false
-    var name: String = ""
-    var quantityIsRange: Bool = false
-    var quantityRange: [Float] = [0, 0]
-    var unit: Unit = .n_a
-    var customUnit: String = ""
-}
-
-struct newIngredient: Identifiable, Hashable {
-    var id = UUID()
-    var text: String
-}
-
-func unitMap() -> [String: Unit] {
-    return [
-        "tsp": .tsp, "teaspoon": .tsp, "teaspoons": .tsp,
-        "tbsp": .tbsp, "tablespoon": .tbsp, "tablespoons": .tbsp,
-        "cup": .cup, "cups": .cup,
-        "oz": .oz, "ounce": .oz, "ounces": .oz,
-        "g": .g, "gram": .g, "grams": .g,
-        "ml": .ml, "milliliter": .ml, "milliliters": .ml,
-        "floz": .fl_oz, "fl": .fl_oz, "fl.oz": .fl_oz,
-        "fluid": .fl_oz, "pound": .lb, "pounds": .lb, "lb": .lb, "lbs": .lb
-    ]
+    var text: String = ""
 }
 
 func fractionsList() -> [String] {
     return ["¼","½","¾","⅓","⅔","⅙","⅚","⅛","⅜","⅝","⅞"]
 }
 
-func floatToFraction(num: Float) -> String {
-    if num.isApproximately(1.0/3.0) {
-        return "⅓"
-    } else if num.isApproximately(2.0/3.0) {
-        return "⅔"
-    } else if num.isApproximately(0.5) {
-        return "½"
-    } else if num.isApproximately(0.25) {
-        return "¼"
-    } else if num.isApproximately(0.75) {
-        return "¾"
-    } else if num.isApproximately(0.125) {
-        return "⅛"
-    } else if num.isApproximately(0.375) {
-        return "⅜"
-    } else if num.isApproximately(0.625) {
-        return "⅝"
-    } else if num.isApproximately(0.875) {
-        return "⅞"
-    } else if num.isApproximately(1.0/6.0) {
-        return "⅙"
-    } else if num.isApproximately(5.0/6.0) {
-        return "⅚"
-    } else {
-        return String(format: "%.2f", num)
-    }
-}
+//func floatToFraction(num: Float) -> String {
+//    if num.isApproximately(1.0/3.0) {
+//        return "⅓"
+//    } else if num.isApproximately(2.0/3.0) {
+//        return "⅔"
+//    } else if num.isApproximately(0.5) {
+//        return "½"
+//    } else if num.isApproximately(0.25) {
+//        return "¼"
+//    } else if num.isApproximately(0.75) {
+//        return "¾"
+//    } else if num.isApproximately(0.125) {
+//        return "⅛"
+//    } else if num.isApproximately(0.375) {
+//        return "⅜"
+//    } else if num.isApproximately(0.625) {
+//        return "⅝"
+//    } else if num.isApproximately(0.875) {
+//        return "⅞"
+//    } else if num.isApproximately(1.0/6.0) {
+//        return "⅙"
+//    } else if num.isApproximately(5.0/6.0) {
+//        return "⅚"
+//    } else {
+//        return String(format: "%.2f", num)
+//    }
+//}
 
 func fractionToFloat(fraction: String) -> Float {
     switch fraction {
@@ -126,55 +75,106 @@ func fractionToFloat(fraction: String) -> Float {
     }
 }
 
-struct newIngredientView: View {
-    @Binding var ingredient: newIngredient
-    @Binding var ingredientMultiplier: Float?
+func scaleQuantities(in input: String, by factor: Double) -> String {
+    let pattern = #"""
+        (?x)
+        (                 # number token
+              \d+\s+\d+/\d+   # mixed number: 1 1/2
+            |
+              \d+\s*/\s*\d+   # fraction like 1/2
+            |
+              \d+(?:\.\d+)?   # int/decimal like 2 or 0.5
+        )
+        """#
     
-    var body: some View {
-        Text(ingredient.text)
+    let regex = try! NSRegularExpression(pattern: pattern, options: [])
+    var result = input
+    var delta = 0
+    
+    let nsInput = input as NSString
+    let matches = regex.matches(in: input, range: NSRange(location: 0, length: nsInput.length))
+    
+    for m in matches {
+        let r = NSRange(location: m.range.location + delta, length: m.range.length)
+        let current = (result as NSString).substring(with: r)
+        
+        guard let value = parseNumber(from: current) else { continue }
+        
+        let newVal = value * factor
+        let replacement = formatNumber(newVal)
+        
+        result = (result as NSString).replacingCharacters(in: r, with: replacement)
+        delta += replacement.count - r.length
     }
+    return result
+}
+
+private func parseNumber(from token: String) -> Double? {
+    let parts = token.split(separator: " ")
+    if parts.count == 2, let whole = Double(parts[0]) { // mixed number
+        let fracParts = parts[1].split(separator: "/")
+        if fracParts.count == 2,
+           let num = Double(fracParts[0]),
+           let den = Double(fracParts[1]), den != 0 {
+            return whole + (num / den)
+        }
+    }
+    if token.contains("/") { // pure fraction
+        let fracParts = token.split(separator: "/")
+        if fracParts.count == 2,
+           let num = Double(fracParts[0]),
+           let den = Double(fracParts[1]), den != 0 {
+            return num / den
+        }
+    }
+    return Double(token) // int or decimal
+}
+
+private func formatNumber(_ x: Double) -> String {
+    var unicodeFractions: [(Double, String)] = [
+           (0.125, "⅛"),
+           (0.1666, "⅙"),
+           (0.25, "¼"),
+           (0.3333, "⅓"),
+           (0.375, "⅜"),
+           (0.5,  "½"),
+           (0.625, "⅝"),
+           (0.6666, "⅔"),
+           (0.75, "¾"),
+           (0.8333, "⅚"),
+           (0.875, "⅞")
+    ]
+       
+    let whole = Int(floor(x))
+    let frac = x - Double(whole)
+    
+   
+    // Find closest unicode fraction within tolerance
+    let tolerance = 0.05
+    if let (val, symbol) = unicodeFractions.min(by: {
+        abs(frac - $0.0) < abs(frac - $1.0)
+     }), abs(frac - val) < tolerance {
+        if whole == 0 {
+            return symbol
+        } else {
+            return "\(whole) \(symbol)"
+        }
+    }
+     
+     let f = NumberFormatter()
+     f.minimumIntegerDigits = 1
+     f.minimumFractionDigits = 0
+     f.maximumFractionDigits = 3
+     f.usesGroupingSeparator = false
+     return f.string(from: NSNumber(value: x)) ?? "\(x)"
 }
 
 struct IngredientView: View {
     @Binding var ingredient: Ingredient
-    @Binding var ingredientMultiplier: Float
-    
-    var quantity: [Float] {
-        if ingredient.quantityIsRange {
-            return ingredient.quantityRange.map { $0 * ingredientMultiplier }
-        }
-        return [ingredient.quantityRange[0] * ingredientMultiplier]
-    }
-    
-    var quantityDisplay: String {
-        quantity.enumerated().map { idx, q in
-            if q == Float(Int(q)) {
-                return String(Int(q))
-            } else if q < 1 {
-                return floatToFraction(num: q)
-            } else {
-                let fractional = floatToFraction(num: q.decimalPart)
-                if fractional.contains(".") {
-                    return String(q)
-                } else {
-                    return "\(Int(q)) \(fractional)"
-                }
-            }
-        }
-        .joined(separator: "-")
-    }
-    
-    var unitDisplay: String {
-        if ingredient.unit == .custom {
-            return ingredient.customUnit
-        } else if ingredient.unit == .n_a {
-            return ""
-        }
-        return ingredient.unit.displayName
-    }
+    @Binding var ingredientMultiplier: Double
     
     var body: some View {
-        Text("\(quantityDisplay) \(unitDisplay) \(ingredient.name)")
+        Text(scaleQuantities(in: ingredient.text, by: ingredientMultiplier))
     }
 }
 

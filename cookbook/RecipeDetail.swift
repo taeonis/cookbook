@@ -6,20 +6,20 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct RecipeDetail: View {
     @Binding var recipe: Recipe
     let isEditing: Bool
     
     @State var isEditingTags = false
-    @State private var isEditingIngredient = false
-    @State private var ingredientMultiplier: Float = 1.0
+    @State private var ingredientMultiplier: Double = 1.0
     @State private var wasCancelled: Bool = false
     @State private var isCreatingNew: Bool = false
-    @State private var selectedIngredient: Ingredient = Ingredient()
-    @State private var isEditingTime = false
+    @State private var isEditingTime: Bool = false
+    @State private var showNotes: Bool = false
     
-    @FocusState private var isTextFieldFocused: Bool
+    @State private var sheetHeight: CGFloat = .zero
     
     @State private var deleteTarget: UUID? = nil
     
@@ -63,12 +63,11 @@ struct RecipeDetail: View {
             }
             
             // SOURCE
-            HStack() {
+            HStack {
                 Text("Source:")
-                    
-                if !recipe.source.isEmpty, let url = URL(string: recipe.source) {
+                if let source = recipe.source, let url = URL(string: source) {
                     Link(destination: url) {
-                        Text(recipe.source)
+                        Text(source)
                             .foregroundColor(.blue)
                             .underline()
                             .lineLimit(1)
@@ -107,6 +106,52 @@ struct RecipeDetail: View {
             .fontWeight(.semibold)
             .foregroundColor(.secondary)
             
+            
+            // NOTES
+            Button {
+                withAnimation {
+                    showNotes.toggle()
+                }
+            } label: {
+                Image(systemName: "chevron.down")
+                    .rotationEffect(.degrees((showNotes ?  -180 : 0)))
+                Text(showNotes || isEditing ? "Hide Notes" : "Show Notes")
+            }
+            .disabled(isEditing)
+            .buttonStyle(.plain)
+            .fontWeight(.semibold)
+            .foregroundStyle(.secondary)
+            if showNotes || isEditing {
+                HStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: 3)
+                        .padding(.horizontal, 8)
+                        .opacity(0.8)
+                    if recipe.notes.isEmpty && !isEditing {
+                        Text("You haven't written any notes yet!")
+                            .foregroundColor(.secondary)
+                            .padding(.vertical)
+                    } else if isEditing {
+                        ZStack {
+                            if recipe.notes.isEmpty {
+                                TextEditor(text: .constant("Add some notes..."))
+                                    .foregroundColor(.gray)
+                                    .disabled(true)
+                            }
+                            TextEditor(text: $recipe.notes)
+                        }
+                        .frame(minHeight: 50)
+                        .textEntryBorder()
+                        .padding(.vertical)
+                    } else {
+                        Text(recipe.notes)
+                            .padding(.vertical)
+                    }
+                }
+            }
+            
+            
             // INGREDIENTS
             Section (
                 header:
@@ -116,13 +161,24 @@ struct RecipeDetail: View {
                             .fontWeight(.semibold)
                         if !isEditing {
                             Spacer()
-                            Picker("Multiplier", selection: $ingredientMultiplier) {
-                                Text("1/2×").tag(0.5 as Float)
-                                Text("1×").tag(1 as Float)
-                                Text("2×").tag(2 as Float)
+                            Text("Multiplier:")
+                            Button {
+                                print()
+                            } label: {
+                                if ingredientMultiplier == floor(ingredientMultiplier) {
+                                    Text("\(String(format: "%.0f", ingredientMultiplier))×")
+                                } else {
+                                    Text("\(ingredientMultiplier)×")
+                                }
                             }
-                            .pickerStyle(.segmented)
-                            .fixedSize()
+                            .font(.subheadline)
+//                            Picker("Multiplier", selection: $ingredientMultiplier) {
+//                                Text("1/2×").tag(0.5 as Double)
+//                                Text("1×").tag(1 as Double)
+//                                Text("2×").tag(2 as Double)
+//                            }
+//                            .pickerStyle(.segmented)
+//                            .fixedSize()
                         }
                     }
             ) {
@@ -133,26 +189,21 @@ struct RecipeDetail: View {
                                 deleteTarget: $deleteTarget,
                                 itemID: ingredient.id,
                                 onDelete: { deleteIngredient(ingredient) })
-                            IngredientView(ingredient: $ingredient, ingredientMultiplier: $ingredientMultiplier)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            TextField("Enter ingredient...", text: $ingredient.text, axis: .vertical)
+                                .lineLimit(1...10)
                                 .textEntryBorder()
-                                .onTapGesture {
-                                    editIngredient(ingredient)
-                                }
                         }
                         
                     }
-                    HStack{
+                    HStack {
                         Text("Add Ingredient")
                             .fontWeight(.semibold)
                             .opacity(0.3)
                         Spacer()
-                        Button { editIngredient()
-                        } label: {
+                        Button(action: addIngredient) {
                             Image(systemName: "plus.circle.fill")
                                 .foregroundColor(.green)
                         }
-                        .buttonStyle(.plain)
                         
                     }
                 } else {
@@ -180,7 +231,6 @@ struct RecipeDetail: View {
                         .font(.title2)
                         .fontWeight(.semibold)
             ) {
-                //if isEditing {
                 ForEach($recipe.instructions) { $instruction in
                     HStack {
                         if isEditing {
@@ -194,7 +244,7 @@ struct RecipeDetail: View {
                     }
                     
                     if isEditing {
-                        TextField("", text: $instruction.text, axis: .vertical)
+                        TextField("Enter instructions...", text: $instruction.text, axis: .vertical)
                             .lineLimit(1...10)
                             .textEntryBorder()
                     } else {
@@ -225,19 +275,8 @@ struct RecipeDetail: View {
             NavigationStack {
                 TimeEditor(time: $recipe.totalTime)
             }
-        }
-        .sheet(isPresented: $isEditingIngredient, onDismiss: {
-            if !wasCancelled && isCreatingNew {
-                recipe.ingredients.append(selectedIngredient)
-            } else if !wasCancelled, let idx = recipe.ingredients.firstIndex(where: { $0.id == selectedIngredient.id }) {
-                recipe.ingredients[idx] = selectedIngredient
-            }
-            isCreatingNew = false
-            wasCancelled = false
-        }) {
-            NavigationStack {
-                IngredientEditor(ingredient: $selectedIngredient, wasCancelled: $wasCancelled)
-            }
+            .padding()
+            .presentationDetents([.height(350)])
         }
     }
     
@@ -259,14 +298,10 @@ struct RecipeDetail: View {
         }
     }
     
-    private func editIngredient(_ ingredient: Ingredient? = nil) {
-        if let ingredient {
-            selectedIngredient = ingredient
-        } else {
-            isCreatingNew = true
-            selectedIngredient = Ingredient()
+    private func addIngredient() {
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+            recipe.ingredients.append(Ingredient(text: ""))
         }
-        isEditingIngredient.toggle()
     }
     
     private func deleteInstruction(_ instruction: Instruction) {
@@ -296,7 +331,7 @@ struct RecipeDetail: View {
 
 #Preview {
     StatefulPreviewWrapper(Recipe.example) { recipe in
-        RecipeDetail(recipe: recipe, isEditing: true)
+        RecipeDetail(recipe: recipe, isEditing: false)
             .environmentObject(RecipeData())
     }
 }
